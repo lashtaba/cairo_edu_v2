@@ -14,7 +14,7 @@ func array_play(array_param_len : felt, array_param : felt*) -> (res: felt):
     return (res)
 end
 
-let (my_array: felt*) = alloc()
+let (felt_array: felt*) = alloc()
 assert [felt_array] = 3
 assert [felt_array + 1] = 2
 
