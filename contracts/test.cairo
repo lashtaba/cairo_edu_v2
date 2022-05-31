@@ -12,7 +12,7 @@ func array_play(array_param_len : felt, array_param : felt*) -> (res: felt):
     # read last element of the array
     let last = array_param[array_param_len - 1]
     let res = first + last
-    return (res)
+    return (333)
 end
 
 func main{output_ptr: felt*}():
