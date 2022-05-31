@@ -15,7 +15,7 @@ func array_play(array_param_len : felt, array_param : felt*) -> (res: felt):
     return (res)
 end
 
-func main{pedersen_ptr : HashBuiltin*, range_check_ptr}():
+func main{pedersen_ptr : HashBuiltin*, range_check_ptr, output_ptr: felt*}():
     let (felt_array: felt*) = alloc()
     assert [felt_array] = 3
     assert [felt_array + 1] = 2
