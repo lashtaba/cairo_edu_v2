@@ -16,7 +16,7 @@ func array_play(array_param_len : felt, array_param : felt*) -> (res: felt):
 end
 
 func main{output_ptr: felt*}():
-    alloc_locals
+
     let sum = 2
     serialize_word(sum)
     return()
