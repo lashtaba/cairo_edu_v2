@@ -20,8 +20,7 @@ func main{output_ptr: felt*}():
     let (ptr) = alloc()
     assert [ptr] = 1
     assert [ptr + 1] = 2
-    let sum = array_play(array_len, ptr)
-    serialize_word(sum)
+    serialize_word(array_len)
     return()
 end
 
