@@ -23,6 +23,6 @@ func main{output_ptr : felt*}():
 
     let example = array_play(array_len, felt_array)
 
-    serialize_word(example)
+
     return()
 end
