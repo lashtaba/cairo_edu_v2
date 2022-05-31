@@ -18,8 +18,7 @@ end
 let (felt_array: felt*) = alloc()
 assert [felt_array] = 3
 assert [felt_array + 1] = 2
-let array_len
-assert array_len = 2
+let array_len = 2
 
 let example = array_play(array_len, felt_array)
 
