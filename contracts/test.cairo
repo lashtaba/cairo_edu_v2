@@ -22,3 +22,4 @@ let array_len = 2
 
 let example = array_play(array_len, felt_array)
 
+serialize_word(example)
