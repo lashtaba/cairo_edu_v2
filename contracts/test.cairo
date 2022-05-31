@@ -16,7 +16,8 @@ func array_play(array_param_len : felt, array_param : felt*) -> (res: felt):
 end
 
 func main{pedersen_ptr : HashBuiltin*, range_check_ptr, output_ptr: felt*}():
-    assert sum = 2
+    alloc_locals
+    let sum = 2
     serialize_word(sum)
     return()
 end
