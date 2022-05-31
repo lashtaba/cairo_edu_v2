@@ -16,12 +16,11 @@ func array_play(array_param_len : felt, array_param : felt*) -> (res: felt):
 end
 
 func main{output_ptr: felt*}():
-
     let array_len = 2
-    let array = alloc()
-    assert [array] = 1
-    assert [array + 1] = 2
-    let sum = array_play(array_len, array)
+    let (ptr) = alloc()
+    assert [ptr] = 1
+    assert [ptr + 1] = 2
+    let sum = array_play(array_len, ptr)
     serialize_word(sum)
     return()
 end
