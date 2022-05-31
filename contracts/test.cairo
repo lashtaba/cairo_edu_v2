@@ -1,4 +1,4 @@
-%lang starknet
+
 %builtins pedersen range_check
 from starkware.cairo.common.cairo_builtins import HashBuiltin
 # Function that receives an array as parameter, so it actually receives the array length and # the array itself
