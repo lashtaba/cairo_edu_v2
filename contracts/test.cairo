@@ -18,7 +18,7 @@ func product_sum(arr : felt*, size) -> (sum):
 end
 
 func main{output_ptr : felt*}():
-    const ARRAY_SIZE = 7
+    const ARRAY_SIZE = 6
 
     # Allocate an array.
     let (ptr) = alloc()
