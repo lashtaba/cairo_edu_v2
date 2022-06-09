@@ -70,7 +70,7 @@ func main():
     let (__fp__, _) = get_fp_and_pc()
 
     verify_location_list(
-        loc_list = cast(&loc_tuple, Location*), n_step=4
+        loc_list = cast(&loc_tuple, Location*), n_steps=4
     )
     return ()
 end
