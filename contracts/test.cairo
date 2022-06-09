@@ -1,6 +1,11 @@
 from starkware.cairo.common.registers import get_fp_and_pc
 
-func verify_valid_location(loc: Location*):
+struct Location:
+    member row : felt
+    member col : felt
+end
+
+func verify_valid_location(loc : Location*):
     # Проверим, что строка находится в диапазоне 0-3
     tempvar row = loc.row
     assert row * (row - 1) * (row - 2) * (row - 3) = 0
