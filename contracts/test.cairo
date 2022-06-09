@@ -4,7 +4,7 @@ from starkware.cairo.common.alloc import alloc
 from starkware.cairo.common.serialize import serialize_word
 
 func product_sum(arr : felt*, size) -> (sum):
-    if size  <= 1:
+    if size  < 1:
         return ([arr])
     end
 
@@ -14,7 +14,7 @@ func product_sum(arr : felt*, size) -> (sum):
 end
 
 func main{output_ptr : felt*}():
-    const ARRAY_SIZE = 7
+    const ARRAY_SIZE = 1
 
     # Allocate an array.
     let (ptr) = alloc()
