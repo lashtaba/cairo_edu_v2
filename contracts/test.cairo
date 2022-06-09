@@ -7,7 +7,7 @@ func product_sum(arr : felt*, size) -> (sum):
     if size  == 1:
         return ([arr])
     end
-    else:
+
     # size is not zero.
     let (multiple_of_rest) = product_sum(arr=arr + 2, size=size - 2)
     return (sum=[arr] * multiple_of_rest)
