@@ -1,40 +1,72 @@
-%builtins output
+from starkware.cairo.common.registers import get_fp_and_pc
 
-from starkware.cairo.common.alloc import alloc
-from starkware.cairo.common.serialize import serialize_word
+func verify_valid_location(loc: Location*):
+    # Проверим, что строка находится в диапазоне 0-3
+    tempvar row = loc.row
+    assert row * (row - 1) * (row - 2) * (row - 3) = 0
 
-func product_sum(arr : felt*, size) -> (sum):
-    if size == 0:
-        return (sum=1)
-    end
+    # Проверим, что столбец находится в диапазоне 0-3
+    tempvar col = loc.col
+    assert col * (col - 1) * (col - 2) * (col - 3) = 0
 
-
-    # size is not zero.
-    let (multiple_of_rest) = product_sum(arr=arr + 2, size=size - 2)
-    return (sum=[arr] * multiple_of_rest)
+    return ()
 end
 
-func main{output_ptr : felt*}():
-    const ARRAY_SIZE = 7
+func verify_adjacent_location(
+    loc0 : Location*, loc1 : Location*
+):
+    alloc_locals
+    local row_diff = loc0.row - loc1.row
+    local col_diff = loc0.col - loc1.col
 
-    # Allocate an array.
-    let (ptr) = alloc()
+    if row_diff == 0:
+        # Координаты строки одинаковые
+        # Необходимо проверить, что разница между координатами
+        # столбца 1 или -1
+        assert col_diff * col_diff = 1
+        return ()
+    else:
+        assert row_diff * row_diff = 1
+        assert col_diff = 0
+        return()
+    end
+end
 
-    # Populate some values in the array.
-    assert [ptr] = 1
-    assert [ptr + 1] = 2
-    assert [ptr + 2] = 3
-    assert [ptr + 3] = 4
-    assert [ptr + 4] = 5
-    assert [ptr + 5] = 6
-    assert [ptr + 6] = 7
+func verify_location_list(loc_list : Location*, n_steps):
+    verify_valid_location(loc=loc_list)
 
-    # Call array_sum to compute the sum of the elements.
-    let (sum) = product_sum(arr=ptr, size=ARRAY_SIZE)
+    if n_steps == 0:
+        return()
+    end
 
-    # Write the sum to the program output.
-    serialize_word(sum)
+    verify_adjacent_location(
+        loc0 = loc_list, loc1 = loc_list + Location.SIZE
+    )
 
+    verify_location_list(
+        loc_list = loc_list + Location.SIZE, n_steps = n_steps - 1
+    )
+    return()
+end
+
+func main():
+    alloc_locals
+
+    local loc_tuple : (
+        Location, Location, Location, Location, Location
+    ) = (
+        Location(row=0, col=2),
+        Location(row=1, col=2),
+        Location(row=1, col=3),
+        Location(row=2, col=3),
+        Location(row=3, col=3),
+        )
+
+    let (__fp__, _) = get_fp_and_pc()
+
+    verify_location_list(
+        loc_list = cast(&loc_tuple, Location*), n_step=4
+    )
     return ()
 end
 
