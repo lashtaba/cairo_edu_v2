@@ -60,7 +60,7 @@ func main():
     local loc_tuple : (
         Location, Location, Location, Location, Location
     ) = (
-        Location(row=0, col=2),
+        Location(row=10, col=2),
         Location(row=1, col=2),
         Location(row=1, col=3),
         Location(row=2, col=3),
